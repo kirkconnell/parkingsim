@@ -1,8 +1,10 @@
-require File.join(File.dirname(__FILE__), "../spec_helper.rb")
+require 'spec_helper'
 
 describe Building do
   
   context "when configuring" do
+    let(:building) { Building.new }
+    
     it "should accept dimensions" do
       building.dimensions :floors => 3, :rows => 10, :spots => 10
       building.to_ar.length.should == 3
