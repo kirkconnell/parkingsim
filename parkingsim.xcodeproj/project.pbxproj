@@ -73,8 +73,6 @@
 		29B97324FDCFA39411CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
 		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
 		2BFA9DA610CDF852007972A1 /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/MainMenu.xib; sourceTree = "<group>"; };
-		4A59FFFD116928380029EE59 /* spec.opts */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = spec.opts; sourceTree = "<group>"; };
-		4A59FFFE116928380029EE59 /* spec_helper.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = spec_helper.rb; sourceTree = "<group>"; };
 		4DE339F60D74FCDD00ADB6EE /* rb_main.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = rb_main.rb; sourceTree = "<group>"; };
 		4DE3BE130D8651D900ECA448 /* MacRuby.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MacRuby.framework; path = /Library/Frameworks/MacRuby.framework; sourceTree = "<absolute>"; };
 		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -140,7 +138,6 @@
 		29B97314FDCFA39411CA2CEA /* parkingsim */ = {
 			isa = PBXGroup;
 			children = (
-				4A59FFFB116928380029EE59 /* spec */,
 				172754AE1075979200D0347B /* Tests */,
 				080E96DDFE201D6D7F000001 /* Classes */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
@@ -177,23 +174,6 @@
 				1058C7A2FEA54F0111CA2CBB /* Other Frameworks */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		4A59FFFB116928380029EE59 /* spec */ = {
-			isa = PBXGroup;
-			children = (
-				4A59FFFC116928380029EE59 /* parkingsim */,
-				4A59FFFD116928380029EE59 /* spec.opts */,
-				4A59FFFE116928380029EE59 /* spec_helper.rb */,
-			);
-			path = spec;
-			sourceTree = "<group>";
-		};
-		4A59FFFC116928380029EE59 /* parkingsim */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = parkingsim;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

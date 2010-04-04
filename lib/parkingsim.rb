@@ -1,1 +1,1 @@
-require 'parkingsim/*'
+require 'parkingsim/building'
