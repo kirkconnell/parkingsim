@@ -1,11 +1,23 @@
 class Building
+  attr_reader :floors, :rows, :spots
+  attr_reader :gates
+  
+  def initialize(dimensions=nil)
+    @gates = [{:floor => 0, :row => 0}]
+    self.dimensions(dimensions) unless dimensions.nil?
+  end
+  
   def dimensions(options={})
-    @array = []
-    options[:floors].times do |floor|
+    @array  = []
+    @floors = options[:floors]
+    @rows   = options[:rows]
+    @spots  = options[:spots]
+    
+    self.floors.times do |floor|
       @array << []
-      options[:rows].times do |row|
+      self.rows.times do |row|
         @array[floor] << []
-        options[:spots].times { @array[floor][row] << false }
+        self.spots.times { @array[floor][row] << false }
       end
     end
     @array
@@ -14,4 +26,32 @@ class Building
   def to_ar
     @array
   end
+  
+  def free_spots_on(location)
+    free_spots = []
+    row = @array[location[:floor]][location[:row]]
+    self.spots.times { |spot| free_spots << spot unless row[spot] }
+    free_spots
+  end
+  
+  def free_spot?(location)
+    !@array[location[:floor]][location[:row]][location[:spot]]
+  end
+  
+  def park_at!(location)
+    if free_spot?(location)
+      @array[location[:floor]][location[:row]][location[:spot]] = true
+    else
+      raise "You crashed! There was a car already on that spot."
+    end
+  end
+  
+  def unpark_from!(location)
+    unless free_spot?(location)
+      @array[location[:floor]][location[:row]][location[:spot]] = false
+    else
+      raise "A car came from another dimension and moved out of the parking lot!"
+    end
+  end
+  
 end

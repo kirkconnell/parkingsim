@@ -4,3 +4,4 @@ $:.unshift(lib_dir)
 $:.uniq!
 
 require 'building'
+require 'car'
