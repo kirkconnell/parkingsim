@@ -5,10 +5,6 @@ describe Car do
   let(:car) { Car.new building }
   
   context "just getting into the building" do
-    it "should be driving" do
-      car.should be_driving
-    end
-    
     it "should be moving forward" do
       car.direction.should == :forward
     end
@@ -22,7 +18,7 @@ describe Car do
     end
   end
   
-  context "looking for a spot" do
+  context "using driving logic" do
     context "with spots available in the current row" do
       before(:each) do
         car.building.should_receive(:free_spots_on).with(:floor => 0, :row => 0).and_return([0, 1, 2, 3, 4, 5, 6, 7, 8, ])
@@ -45,7 +41,7 @@ describe Car do
         car.building.stub!(:free_spots_on).with(:floor => 0, :row => 0).and_return([])
       end
       
-      it "should not suggest a spot if the row is full" do
+      it "should not look for parking" do
         car.look_for_spot.should be_nil
       end
       
@@ -56,7 +52,7 @@ describe Car do
         car.drive_intention.should == {:floor => 0, :row => 1}
       end
       
-      it "should decide another row to look into" do
+      it "should look for rows on the next floor if the current floor is full" do
         car.current_location[:row] = 7
         
         car.decide_next_row!.should == {:floor => 0, :row => 8}
@@ -79,7 +75,7 @@ describe Car do
         car.decide_next_row!.should == {:floor => 2, :row => 7}
       end
       
-      it "should turn arounc again once it reaches the begining of the parking lot" do
+      it "should turn around again once it reaches the begining of the parking lot" do
         car.current_location[:floor] = 0
         car.current_location[:row] = 2
         car.invert_direction!

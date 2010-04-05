@@ -6,7 +6,6 @@ class Car
   attr_reader :park_intention, :drive_intention, :next_action
   
   def initialize(building)
-    @driving    = true
     @building   = building
     @current_location = building.gates[rand(building.gates.length)]
     @direction  = :forward
@@ -14,10 +13,6 @@ class Car
   
   def reset!
     initialize(building)
-  end
-  
-  def driving?
-    @driving
   end
   
   def move!
