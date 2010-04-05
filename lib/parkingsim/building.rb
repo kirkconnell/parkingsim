@@ -38,7 +38,7 @@ class Building
     !@array[location[:floor]][location[:row]][location[:spot]]
   end
   
-  def park_at!(location)
+  def take_spot!(location)
     if free_spot?(location)
       @array[location[:floor]][location[:row]][location[:spot]] = true
     else
@@ -46,7 +46,7 @@ class Building
     end
   end
   
-  def unpark_from!(location)
+  def release_spot!(location)
     unless free_spot?(location)
       @array[location[:floor]][location[:row]][location[:spot]] = false
     else

@@ -12,6 +12,7 @@ class Car
   end
   
   def reset!
+    # for testing purposes
     initialize(building)
   end
   
@@ -23,7 +24,7 @@ class Car
   def park!
     # todo: if this ever goes multithread, then we need to synchronize this method
     if building.free_spot?(park_intention)
-      building.park_at! park_intention
+      building.take_spot! park_intention
       true
     else
       decide_next_action!

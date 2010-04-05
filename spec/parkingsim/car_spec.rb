@@ -12,7 +12,7 @@ describe Car do
     it "should start at any of the initial locations" do
       car.building.gates << {:floor => 1, :row => 0}
       car.building.gates << {:floor => 2, :row => 0}
-      car.should_receive(:rand).with(car.building.gates.length).and_return 2
+      car.stub!(:rand).with(car.building.gates.length).and_return 2
       car.reset!
       car.current_location.should == {:floor => 2, :row => 0}
     end
@@ -41,7 +41,7 @@ describe Car do
         car.building.stub!(:free_spots_on).with(:floor => 0, :row => 0).and_return([])
       end
       
-      it "should not look for parking" do
+      it "should not find parking" do
         car.look_for_spot.should be_nil
       end
       
@@ -53,6 +53,7 @@ describe Car do
       end
       
       it "should look for rows on the next floor if the current floor is full" do
+        # jump to row 7
         car.current_location[:row] = 7
         
         car.decide_next_row!.should == {:floor => 0, :row => 8}
@@ -63,6 +64,7 @@ describe Car do
       end
       
       it "should turn around once it finds that the parking building is full" do
+        # jump to floor 2 row 7
         car.current_location[:floor] = 2
         car.current_location[:row] = 7
         
@@ -76,9 +78,11 @@ describe Car do
       end
       
       it "should turn around again once it reaches the begining of the parking lot" do
+        # turn around, jump to floor 0 row 2
+        car.invert_direction!
         car.current_location[:floor] = 0
         car.current_location[:row] = 2
-        car.invert_direction!
+        
         
         car.decide_next_row!.should == {:floor => 0, :row => 1}
         car.move!
@@ -104,7 +108,7 @@ describe Car do
     context "when the spot is free" do
       it "should park the car in the building" do
         car.building.stub!(:free_spot?).with(car.park_intention).and_return true
-        car.building.should_receive(:park_at!).with(car.park_intention)
+        car.building.should_receive(:take_spot!).with(car.park_intention)
         car.park!.should == true
       end
     end
