@@ -42,7 +42,7 @@ class Building
     if free_spot?(location)
       @array[location[:floor]][location[:row]][location[:spot]] = true
     else
-      raise "You crashed! There was a car already on that spot."
+      raise "You crashed! There was a car already on that spot."  # this should never happen.
     end
   end
   
@@ -50,7 +50,7 @@ class Building
     unless free_spot?(location)
       @array[location[:floor]][location[:row]][location[:spot]] = false
     else
-      raise "A car came from another dimension and moved out of the parking lot!"
+      raise "A car came from another dimension and moved out of the parking lot!" # this should never happen.
     end
   end
   

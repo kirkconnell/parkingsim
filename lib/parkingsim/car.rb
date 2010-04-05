@@ -19,17 +19,28 @@ class Car
     @current_location = drive_intention
     @drive_intention = nil
   end
+  
+  def park!
+    # todo: if this ever goes multithread, then we need to synchronize this method
+    if building.free_spot?(park_intention)
+      building.park_at! park_intention
+      true
+    else
+      decide_next_action!
+      false
+    end
+  end
     
   def decide_next_action!
     suggested_spot = self.look_for_spot
     if suggested_spot.nil?
       decide_next_row!
       @park_intention = nil
-      @next_action = "move!"
+      @next_action = :move!
     else
       @park_intention = suggested_spot
       @drive_intention = nil
-      @next_action = "park!"
+      @next_action = :park!
     end
   end
 end
