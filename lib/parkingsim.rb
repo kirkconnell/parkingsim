@@ -5,3 +5,4 @@ $:.uniq!
 
 require 'building'
 require 'car'
+require 'car_factory'
