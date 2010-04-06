@@ -12,6 +12,5 @@ class CarFactory
   
   def self.attempt_creation
     Car.new(instance.building) if instance.win?
-  end
-  
+  end  
 end
