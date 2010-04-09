@@ -5,9 +5,22 @@ class Simulation
   
   def self.tick
     send_messages_to_objects
-    car = CarFactory.attempt_creation
-    cars << car unless car.nil?
-    
+    look_for_new_cars
+    add_new_events_to_queue
+  end
+  
+  def self.look_for_new_cars
+    new_car = CarFactory.attempt_creation
+    cars << new_car unless new_car.nil?
+  end
+  
+  def self.add_new_events_to_queue
+    cars.each do |car|
+      if car.on?
+        car.decide_next_action!
+        EventQueue.add_event(car, car.next_action) # todo: add a timer to the action
+      end
+    end
   end
   
   def self.send_messages_to_objects
