@@ -10,6 +10,15 @@ describe Car do
       Car.new building
     end
     
+    it "should either be on or off" do
+      car.should be_on
+      car.should_not be_off
+      car.decide_next_action!
+      car.park!
+      car.should_not be_on
+      car.should be_off
+    end
+    
     it "should be moving forward" do
       car.direction.should == :forward
     end
@@ -20,6 +29,10 @@ describe Car do
       car.stub!(:rand).with(car.building.gates.length).and_return 2
       car.reset!
       car.current_location.should == {:floor => 2, :row => 0}
+    end
+    
+    it "should be on" do
+      car.should be_on
     end
   end
   
@@ -114,6 +127,11 @@ describe Car do
     it "should check again if another car parked" do
       car.building.should_receive(:free_spot?).twice.with(car.park_intention).and_return true
       car.park!
+    end
+    
+    it "should be off after parking" do
+      car.park!
+      car.should be_off
     end
     
     context "when the spot is free" do

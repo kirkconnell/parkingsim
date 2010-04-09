@@ -13,6 +13,15 @@ class Car
     @current_location = building.gates[rand(building.gates.length)]
     @direction  = :forward
     Car.log "Car created."
+    @state = :on
+  end
+  
+  def on?
+    @state == :on
+  end
+  
+  def off?
+    @state == :off
   end
   
   def reset!
@@ -31,6 +40,7 @@ class Car
     if building.free_spot?(park_intention)
       Car.log "Car parked at Floor: #{park_intention[:floor]} - Row: #{park_intention[:row]} - Spot: #{park_intention[:spot]}"
       building.take_spot! park_intention
+      @state = :off
       true
     else
       Car.log "Car attempted to park at Floor: #{park_intention[:floor]} - Row: #{park_intention[:row]} - Spot: #{park_intention[:spot]}. Looking for a new spot."
