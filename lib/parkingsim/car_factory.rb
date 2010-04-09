@@ -1,4 +1,3 @@
-require 'singleton'
 require 'roller'
 
 class CarFactory

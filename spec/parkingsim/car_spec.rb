@@ -5,6 +5,11 @@ describe Car do
   let(:car) { Car.new building }
   
   context "getting into the building" do
+    it "should log creation" do
+      Car.should_receive(:log)
+      Car.new building
+    end
+    
     it "should be moving forward" do
       car.direction.should == :forward
     end
@@ -43,6 +48,12 @@ describe Car do
       
       it "should not find parking" do
         car.look_for_spot.should be_nil
+      end
+      
+      it "should log when it moves to another row" do
+        car.decide_next_action!
+        Car.should_receive(:log)
+        car.move!
       end
       
       it "should schedule a move to the next row" do
@@ -106,16 +117,29 @@ describe Car do
     end
     
     context "when the spot is free" do
-      it "should park the car in the building" do
+      before(:each) do
         car.building.stub!(:free_spot?).with(car.park_intention).and_return true
+      end
+      
+      it "should park the car in the building" do
         car.building.should_receive(:take_spot!).with(car.park_intention)
         car.park!.should == true
+      end
+      
+      it "should log that it parked" do
+        Car.should_receive(:log)
+        car.park!
       end
     end
     
     context "when the spot is not free" do
       before(:each) do
         car.building.stub!(:free_spot?).with(car.park_intention).and_return false
+      end
+      
+      it "should log that it didn't park" do
+        Car.should_receive(:log)
+        car.park!
       end
       
       it "should not park if a car was already parked" do
