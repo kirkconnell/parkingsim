@@ -1,16 +1,23 @@
 class EventQueue
   include Singleton
-  
   attr_reader :events
+  
+  class Event
+    attr_accessor :object, :message, :timer
+    
+    def initialize(object, message, timer)
+      self.object = object
+      self.message = message
+      self.timer = timer
+    end
+  end
   
   def initialize
     @events = []
-    @@event = Struct.new("Event", :object, :message, :timer)
   end
   
   def self.add_event(object, message, timer = 1)
-    @@event ||= Struct.new("Event", :object, :message, :timer)
-    e = @@event.new(object, message, timer)
+    e = Event.new(object, message, timer)
     instance.events << e
     e
   end
