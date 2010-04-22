@@ -8,7 +8,7 @@ describe CarFactory do
     end
   
     it "should have a default probability percentage" do
-      CarFactory.instance.probability.should == 0.1
+      CarFactory.instance.probability.should == 0.8
     end
   
     it "should have a reference to the building" do

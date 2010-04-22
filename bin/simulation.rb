@@ -10,7 +10,7 @@ Simulation.cars << car
 CarFactory.instance.building = building
 
 car.decide_next_action!
-EventQueue.add_event(car, car.next_action)
+EventQueue.add_event(car, car.next_action, car.action_time)
 
 begin 
   Simulation.tick

@@ -9,7 +9,11 @@ describe Simulation do
   end
   
   def mock_car
-    mock("car", :decide_next_action! => :park!, :next_action => :park!, :on? => true, :park! => true)
+    mock("car", :decide_next_action! => :park!, 
+                :next_action => :park!, 
+                :action_time => 3,
+                :on? => true, 
+                :park! => true)
   end
   
   context "retrieving messages from event queue" do
@@ -48,7 +52,19 @@ describe Simulation do
   
   context "getting new events for the queue" do
     before(:each) do
-      3.times { Simulation.cars << mock_car }
+      3.times { Simulation.cars << mock_car } 
+    end
+    
+    it "should only use cars that are not in the event queue" do
+      Simulation.available_cars.length.should == 3
+      Simulation.available_cars.each do |car| 
+        (EventQueue.instance.events.find { |e| e.object == car }).should be_nil
+      end
+    end
+    
+    it "should not list a queued car as available" do
+      EventQueue.add_event(Simulation.cars[0], :move!)
+      Simulation.available_cars.length == 2
     end
     
     it "should decide the next action for the cars" do

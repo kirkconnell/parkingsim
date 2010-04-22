@@ -35,7 +35,10 @@ class Building
   end
   
   def free_spot?(location)
-    !@array[location[:floor]][location[:row]][location[:spot]]
+    floor = location[:floor]
+    row = location[:row]
+    spot = location[:spot]
+    !@array[floor][row][spot]
   end
   
   def take_spot!(location)

@@ -164,11 +164,35 @@ describe Car do
         car.park!.should == false
       end
     
-      it "should look for another spot if there are spots available on the row" do
-        car.should_receive(:decide_next_action!)
-        car.park!
-        car.next_action.should == :park!
+      it "should stay on waiting for a decision to take" do
+        car.park!.should == false
+        car.should be_on
       end
+    end
+  end
+
+  context "calculating action times" do
+    it "should take 1 second to move between rows" do
+      car.stub!(:next_action).and_return(:move!)
+      car.stub!(:current_location).and_return(:floor => 0, :row => 0)
+      car.stub!(:drive_intention).and_return(:floor => 0, :row => 1)
+      car.action_time.should == 1
+    end
+    
+    it "should take 3 seconds to move between floors" do
+      car.stub!(:next_action).and_return(:move!)
+      car.stub!(:current_location).and_return(:floor => 0, :row => 9)
+      car.stub!(:drive_intention).and_return(:floor => 1, :row => 0)
+      
+      car.action_time.should == 3
+    end
+    
+    it "should take x + 1 seconds to move to spot x" do
+      x = rand(10)
+      car.stub!(:next_action).and_return(:park!)
+      car.stub!(:park_intention).and_return(:floor => 0, :row => 0, :spot => x)
+      
+      car.action_time.should == x + 1
     end
   end
 

@@ -36,7 +36,6 @@ class Car
   end
   
   def park!
-    # todo: if this ever goes multithread, then we need to synchronize this method
     if building.free_spot?(park_intention)
       Car.log "Car parked at Floor: #{park_intention[:floor]} - Row: #{park_intention[:row]} - Spot: #{park_intention[:spot]}"
       building.take_spot! park_intention
@@ -44,7 +43,6 @@ class Car
       true
     else
       Car.log "Car attempted to park at Floor: #{park_intention[:floor]} - Row: #{park_intention[:row]} - Spot: #{park_intention[:spot]}. Looking for a new spot."
-      decide_next_action!
       false
     end
   end
@@ -59,6 +57,18 @@ class Car
       @park_intention = suggested_spot
       @drive_intention = nil
       @next_action = :park!
+    end
+  end
+  
+  def action_time
+    if self.next_action == :move!
+      if drive_intention[:floor] == current_location[:floor]
+        1
+      else
+        3
+      end
+    elsif next_action == :park!
+      park_intention[:spot] + 1
     end
   end
 end

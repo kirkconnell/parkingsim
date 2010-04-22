@@ -3,6 +3,10 @@ class Simulation
     @@cars ||= []
   end
   
+  def self.available_cars
+    cars.reject { |car| EventQueue.instance.events.find{ |e| e.object == car } }
+  end
+  
   def self.tick
     send_messages_to_objects
     look_for_new_cars
@@ -15,10 +19,10 @@ class Simulation
   end
   
   def self.add_new_events_to_queue
-    cars.each do |car|
+    available_cars.each do |car|
       if car.on?
         car.decide_next_action!
-        EventQueue.add_event(car, car.next_action) # todo: add a timer to the action
+        EventQueue.add_event(car, car.next_action, car.action_time)
       end
     end
   end
