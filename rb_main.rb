@@ -10,6 +10,7 @@
 framework 'Cocoa'
 
 require 'parkingsim'
+require 'application_delegate'
 
 # Starting the Cocoa main loop.
 NSApplicationMain(0, nil)
