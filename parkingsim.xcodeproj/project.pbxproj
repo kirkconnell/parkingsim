@@ -45,6 +45,7 @@
 /* Begin PBXBuildFile section */
 		2BFA9DA710CDF852007972A1 /* ParkingSimulation.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2BFA9DA510CDF852007972A1 /* ParkingSimulation.xib */; };
 		4A42D4F7117FBE3E00498793 /* message_log_delegate.rb in Resources */ = {isa = PBXBuildFile; fileRef = 4A42D4F6117FBE3E00498793 /* message_log_delegate.rb */; };
+		4A5DB9E11194A7F700280C10 /* event_queue_delegate.rb in Resources */ = {isa = PBXBuildFile; fileRef = 4A5DB9E01194A7F700280C10 /* event_queue_delegate.rb */; };
 		4AA700F7117D211A000EC4C2 /* application_delegate.rb in Resources */ = {isa = PBXBuildFile; fileRef = 4AA700F6117D211A000EC4C2 /* application_delegate.rb */; };
 		4AF49BA61173B727000B4F25 /* building.rb in Resources */ = {isa = PBXBuildFile; fileRef = 4AF49B9D1173B727000B4F25 /* building.rb */; };
 		4AF49BA71173B727000B4F25 /* car.rb in Resources */ = {isa = PBXBuildFile; fileRef = 4AF49B9E1173B727000B4F25 /* car.rb */; };
@@ -85,6 +86,7 @@
 		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
 		2BFA9DA610CDF852007972A1 /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/ParkingSimulation.xib; sourceTree = "<group>"; };
 		4A42D4F6117FBE3E00498793 /* message_log_delegate.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = message_log_delegate.rb; sourceTree = "<group>"; };
+		4A5DB9E01194A7F700280C10 /* event_queue_delegate.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = event_queue_delegate.rb; sourceTree = "<group>"; };
 		4AA700F6117D211A000EC4C2 /* application_delegate.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = application_delegate.rb; sourceTree = "<group>"; };
 		4AF49B9D1173B727000B4F25 /* building.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = building.rb; sourceTree = "<group>"; };
 		4AF49B9E1173B727000B4F25 /* car.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = car.rb; sourceTree = "<group>"; };
@@ -213,6 +215,7 @@
 			children = (
 				4AA700F6117D211A000EC4C2 /* application_delegate.rb */,
 				4A42D4F6117FBE3E00498793 /* message_log_delegate.rb */,
+				4A5DB9E01194A7F700280C10 /* event_queue_delegate.rb */,
 			);
 			path = delegates;
 			sourceTree = "<group>";
@@ -324,6 +327,7 @@
 				4AF49BAE1173B727000B4F25 /* parkingsim.rb in Resources */,
 				4AA700F7117D211A000EC4C2 /* application_delegate.rb in Resources */,
 				4A42D4F7117FBE3E00498793 /* message_log_delegate.rb in Resources */,
+				4A5DB9E11194A7F700280C10 /* event_queue_delegate.rb in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
