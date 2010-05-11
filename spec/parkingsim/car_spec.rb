@@ -197,6 +197,12 @@ describe Car do
   end
 
   context "running in a simulation" do
+    context "at any point" do
+      it "should tell me its car id in a nice way" do
+        car.to_s.should == "Car: #{car.object_id}"
+      end
+    end
+    
     context "with a spot available in the current row" do
       it "should decide next action to be a park!" do
         car.decide_next_action!

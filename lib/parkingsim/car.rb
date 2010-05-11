@@ -16,6 +16,10 @@ class Car
     @state = :on
   end
   
+  def to_s
+    "Car: #{object_id}"
+  end
+  
   def on?
     @state == :on
   end
