@@ -10,6 +10,10 @@ describe CarFactory do
     it "should have a default probability percentage" do
       CarFactory.instance.probability.should == 0.8
     end
+    
+    it "should have maximum number of cars that can be created per tick" do
+      CarFactory.instance.tries_per_tick.should == 1
+    end
   
     it "should have a reference to the building" do
       CarFactory.instance.should be_respond_to(:building)

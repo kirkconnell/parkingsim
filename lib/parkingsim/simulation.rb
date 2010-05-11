@@ -14,8 +14,10 @@ class Simulation
   end
   
   def self.look_for_new_cars
-    new_car = CarFactory.attempt_creation
-    cars << new_car unless new_car.nil?
+    CarFactory.instance.tries_per_tick.times do
+      new_car = CarFactory.attempt_creation
+      cars << new_car unless new_car.nil?
+    end
   end
   
   def self.add_new_events_to_queue

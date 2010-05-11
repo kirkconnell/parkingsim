@@ -11,7 +11,7 @@ class ConfigurationDelegate
     
   # window delegate
   def windowDidBecomeKey(notification)
-    max_cars_per_gate.integerValue = 1
+    max_cars_per_gate.integerValue = CarFactory.instance.tries_per_tick
     car_probability.floatValue = CarFactory.instance.probability
     floors.integerValue = parent.building.floors
     rows.integerValue = parent.building.rows

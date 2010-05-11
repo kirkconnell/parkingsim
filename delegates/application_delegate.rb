@@ -76,6 +76,7 @@ class ApplicationDelegate
     @building = Building.new(config[:dimensions])
     @building.gates = config[:gates]
   	CarFactory.instance.probability = config[:probability]
+  	CarFactory.instance.tries_per_tick = config[:cars_per_gate]
   	CarFactory.instance.building = @building
   	
   	logged_messages.clear
