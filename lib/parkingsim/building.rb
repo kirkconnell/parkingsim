@@ -1,6 +1,6 @@
 class Building
-  attr_reader :floors, :rows, :spots
-  attr_reader :gates
+  attr_reader   :floors, :rows, :spots
+  attr_accessor :gates
   
   def initialize(dimensions=nil)
     @gates = [{:floor => 0, :row => 0}]

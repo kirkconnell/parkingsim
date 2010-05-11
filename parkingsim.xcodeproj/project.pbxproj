@@ -56,6 +56,7 @@
 		4AF49BAC1173B727000B4F25 /* roller.rb in Resources */ = {isa = PBXBuildFile; fileRef = 4AF49BA31173B727000B4F25 /* roller.rb */; };
 		4AF49BAD1173B727000B4F25 /* simulation.rb in Resources */ = {isa = PBXBuildFile; fileRef = 4AF49BA41173B727000B4F25 /* simulation.rb */; };
 		4AF49BAE1173B727000B4F25 /* parkingsim.rb in Resources */ = {isa = PBXBuildFile; fileRef = 4AF49BA51173B727000B4F25 /* parkingsim.rb */; };
+		4AF4A07C1199FE3A00A46740 /* configuration_delegate.rb in Resources */ = {isa = PBXBuildFile; fileRef = 4AF4A07B1199FE3A00A46740 /* configuration_delegate.rb */; };
 		4DE339F70D74FCDD00ADB6EE /* rb_main.rb in Resources */ = {isa = PBXBuildFile; fileRef = 4DE339F60D74FCDD00ADB6EE /* rb_main.rb */; };
 		4DE3BE140D8651D900ECA448 /* MacRuby.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4DE3BE130D8651D900ECA448 /* MacRuby.framework */; };
 		8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165CFE840E0CC02AAC07 /* InfoPlist.strings */; };
@@ -104,6 +105,7 @@
 		4AF49BB51173B731000B4F25 /* simulation_spec.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = simulation_spec.rb; sourceTree = "<group>"; };
 		4AF49BB61173B731000B4F25 /* spec.opts */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = spec.opts; sourceTree = "<group>"; };
 		4AF49BB71173B731000B4F25 /* spec_helper.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = spec_helper.rb; sourceTree = "<group>"; };
+		4AF4A07B1199FE3A00A46740 /* configuration_delegate.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = configuration_delegate.rb; sourceTree = "<group>"; };
 		4DE339F60D74FCDD00ADB6EE /* rb_main.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = rb_main.rb; sourceTree = "<group>"; };
 		4DE3BE130D8651D900ECA448 /* MacRuby.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MacRuby.framework; path = /Library/Frameworks/MacRuby.framework; sourceTree = "<absolute>"; };
 		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -216,6 +218,7 @@
 				4AA700F6117D211A000EC4C2 /* application_delegate.rb */,
 				4A42D4F6117FBE3E00498793 /* message_log_delegate.rb */,
 				4A5DB9E01194A7F700280C10 /* event_queue_delegate.rb */,
+				4AF4A07B1199FE3A00A46740 /* configuration_delegate.rb */,
 			);
 			path = delegates;
 			sourceTree = "<group>";
@@ -328,6 +331,7 @@
 				4AA700F7117D211A000EC4C2 /* application_delegate.rb in Resources */,
 				4A42D4F7117FBE3E00498793 /* message_log_delegate.rb in Resources */,
 				4A5DB9E11194A7F700280C10 /* event_queue_delegate.rb in Resources */,
+				4AF4A07C1199FE3A00A46740 /* configuration_delegate.rb in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

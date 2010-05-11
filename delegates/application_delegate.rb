@@ -5,12 +5,15 @@
 # Copyright 2010 High Notes. All rights reserved.
 require 'message_log_delegate'
 require 'event_queue_delegate'
+require 'configuration_delegate'
 
 class ApplicationDelegate
 
-  attr_accessor :play_button, :event_log_table, :event_queue_table
+  attr_accessor :play_button, :configure_button
+  attr_accessor :event_log_table, :event_queue_table
   attr_accessor :total_label, :running_label, :parked_label
-  attr_reader :logged_messages
+  attr_accessor :main_window, :configuration_window
+  attr_reader   :logged_messages, :building
   
   def initialize
   	@logged_messages = []
@@ -31,12 +34,22 @@ class ApplicationDelegate
   	  @timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, 
   				selector: "tick", userInfo:nil, repeats:true)
   	  play_button.title = "Stop"
+  	  configure_button.enabled = false
   	else
   	  @running = false
   	  @timer.invalidate
   	  NSLog "Stopping Simulation."
   	  play_button.title = "Run"
+  	  configure_button.enabled = true
   	end
+  end
+  
+  def show_config_sheet(sender)
+    NSApp.beginSheet(configuration_window,
+                         modalForWindow:main_window,
+                         modalDelegate:nil,
+                         didEndSelector:nil,
+                         contextInfo:nil)
   end
   
   def tick
@@ -54,12 +67,19 @@ class ApplicationDelegate
   	parked_label.stringValue = (Simulation.cars.inject(0) { |sum, c| sum + (c.off? ? 1 : 0) }).to_s
   end
   
-  def configure
-    @building = Building.new :floors => 3, :rows => 3, :spots => 3
+  def configure(config={})
+    config[:dimensions] ||= {:floors => 3, :rows => 3, :spots => 3}
+    config[:probability] ||= 0.5
+    config[:cars_per_gate] ||= 1
+    config[:gates] ||= [{:floor => 0, :row => 0}]
+
+    @building = Building.new(config[:dimensions])
+    @building.gates = config[:gates]
+  	CarFactory.instance.probability = config[:probability]
   	CarFactory.instance.building = @building
-  	CarFactory.instance.probability = 0.5
-  	Simulation.cars.clear
+  	
   	logged_messages.clear
+  	Simulation.cars.clear
   	EventQueue.instance.events.clear
   end
 end
