@@ -19,11 +19,8 @@ class ApplicationDelegate
 
   def applicationDidFinishLaunching(notification)
   	NSLog "Loading Simulation..."
-
-  	@building = Building.new :floors => 3, :rows => 3, :spots => 3
-  	CarFactory.instance.building = @building
+  	configure
   	Car.display_delegate { |msg| @logged_messages << [Time.now, msg] }
-	
   	NSLog "Simulation Ready."
   end
   
@@ -55,5 +52,14 @@ class ApplicationDelegate
   	total_label.stringValue = Simulation.cars.length.to_s
   	running_label.stringValue = (Simulation.cars.inject(0) { |sum, c| sum + (c.on? ? 1 : 0) }).to_s
   	parked_label.stringValue = (Simulation.cars.inject(0) { |sum, c| sum + (c.off? ? 1 : 0) }).to_s
+  end
+  
+  def configure
+    @building = Building.new :floors => 3, :rows => 3, :spots => 3
+  	CarFactory.instance.building = @building
+  	CarFactory.instance.probability = 0.5
+  	Simulation.cars.clear
+  	logged_messages.clear
+  	EventQueue.instance.events.clear
   end
 end

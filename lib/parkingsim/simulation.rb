@@ -18,7 +18,7 @@ class Simulation
     cars.each do |car|
       if car.on?
         car.decide_next_action!
-        EventQueue.add_event(car, car.next_action) # todo: add a timer to the action
+        EventQueue.add_event(car, car.next_action)
       end
     end
   end
