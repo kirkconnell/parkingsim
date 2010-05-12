@@ -16,6 +16,14 @@ class Car
     @state = :on
   end
   
+  def randomize_direction
+    if rand(2) == 0
+      @direction = :forward
+    else
+      @direction = :backward
+    end
+  end
+  
   def to_s
     "Car: #{object_id}"
   end

@@ -16,7 +16,10 @@ class Simulation
   def self.look_for_new_cars
     CarFactory.instance.tries_per_tick.times do
       new_car = CarFactory.attempt_creation
-      cars << new_car unless new_car.nil?
+      unless new_car.nil?
+        new_car.randomize_direction
+        cars << new_car
+      end
     end
   end
   

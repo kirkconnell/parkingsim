@@ -10,6 +10,10 @@ describe Car do
       Car.new building
     end
     
+    it "should be able to randomize direction" do
+      car.randomize_direction
+    end
+    
     it "should either be on or off" do
       car.should be_on
       car.should_not be_off

@@ -12,6 +12,7 @@ describe Simulation do
     mock("car", :decide_next_action! => :park!, 
                 :next_action => :park!, 
                 :action_time => 3,
+                :randomize_direction => true,
                 :on? => true, 
                 :park! => true)
   end
