@@ -5,6 +5,7 @@ class Car
   include DriveLogic
   extend Logger
   
+  attr_accessor :ticks
   attr_reader :building, :current_location, :direction
   attr_reader :park_intention, :drive_intention, :next_action
   
@@ -12,8 +13,10 @@ class Car
     @building   = building
     @current_location = building.gates[rand(building.gates.length)]
     @direction  = :forward
-    Car.log "Car created."
     @state = :on
+    @ticks = 0
+    
+    Car.log "Car created."
   end
   
   def randomize_direction
@@ -44,7 +47,7 @@ class Car
   def move!
     Car.log "Car moved to Floor: #{drive_intention[:floor]} - Row: #{drive_intention[:row]}"
     @current_location = drive_intention
-    @drive_intention = nil
+    @drive_intention = nil    
   end
   
   def park!

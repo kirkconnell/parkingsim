@@ -14,7 +14,9 @@ describe Simulation do
                 :action_time => 3,
                 :randomize_direction => true,
                 :on? => true, 
-                :park! => true)
+                :park! => true,
+                :ticks => 0,
+                :ticks= => 0)
   end
   
   context "retrieving messages from event queue" do
@@ -25,6 +27,11 @@ describe Simulation do
     
     it "should get the next events from the event queue" do
       EventQueue.should_receive(:next_events!).and_return([])
+      Simulation.tick
+    end
+    
+    it "should increase the tick of each car" do
+      Simulation.should_receive(:increment_ticks)
       Simulation.tick
     end
   

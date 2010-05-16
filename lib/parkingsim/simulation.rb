@@ -3,14 +3,24 @@ class Simulation
     @@cars ||= []
   end
   
+  def self.reset
+    Simulation.cars.clear
+  	EventQueue.instance.events.clear
+  end
+  
   def self.available_cars
     cars.reject { |car| EventQueue.instance.events.find{ |e| e.object == car } }
   end
   
   def self.tick
+    increment_ticks
     send_messages_to_objects
     look_for_new_cars
     add_new_events_to_queue
+  end
+  
+  def self.increment_ticks
+    cars.each { |car| car.ticks += 1 if car.on?  }
   end
   
   def self.look_for_new_cars

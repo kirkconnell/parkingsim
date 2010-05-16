@@ -38,6 +38,10 @@ describe Car do
     it "should be on" do
       car.should be_on
     end
+    
+    it "should have a tick count" do
+      car.ticks.should == 0
+    end
   end
   
   context "using driving logic" do
@@ -55,7 +59,7 @@ describe Car do
         car.next_action.should == :park!
         car.drive_intention.should be_nil
         car.park_intention.should == {:floor => 0, :row => 0, :spot => 0}
-      end
+      end      
     end
     
     context "with no spots available in the current row" do
@@ -82,8 +86,8 @@ describe Car do
       
       it "should look for rows on the next floor if the current floor is full" do
         # jump to row 7
+        car.stub!(:next_action).and_return(:move!)
         car.current_location[:row] = 7
-        
         car.decide_next_row!.should == {:floor => 0, :row => 8}
         car.move!
         car.decide_next_row!.should == {:floor => 0, :row => 9}
@@ -93,6 +97,7 @@ describe Car do
       
       it "should turn around once it finds that the parking building is full" do
         # jump to floor 2 row 7
+        car.stub!(:next_action).and_return(:move!)
         car.current_location[:floor] = 2
         car.current_location[:row] = 7
         
@@ -107,6 +112,7 @@ describe Car do
       
       it "should turn around again once it reaches the begining of the parking lot" do
         # turn around, jump to floor 0 row 2
+        car.stub!(:next_action).and_return(:move!)
         car.invert_direction!
         car.current_location[:floor] = 0
         car.current_location[:row] = 2
@@ -197,7 +203,7 @@ describe Car do
       car.stub!(:park_intention).and_return(:floor => 0, :row => 0, :spot => x)
       
       car.action_time.should == x + 1
-    end
+    end    
   end
 
   context "running in a simulation" do
